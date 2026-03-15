@@ -4,9 +4,8 @@
  */
 package com.apimonitor;
 
-import com.apimonitor.database.MonitorRepository;
-import com.apimonitor.models.Monitor;
-import java.util.List;
+import com.apimonitor.database.CheckResultRepository;
+import com.apimonitor.models.CheckResult;
 
 /**
  *
@@ -19,16 +18,18 @@ public class ApiReliabilityMonitor {
         
         System.out.println("Starting API Reliability Monitor...");
 
-        MonitorRepository repository = new MonitorRepository();
-        List<Monitor> monitors = repository.getAllMonitors();
+        CheckResult testResult = new CheckResult(
+                0,
+                1,
+                null,
+                200,
+                150,
+                true,
+                null
+        );
 
-        for (Monitor monitor : monitors) {
-            System.out.println("Monitor ID: " + monitor.getMonitorId());
-            System.out.println("Name: " + monitor.getName());
-            System.out.println("URL: " + monitor.getUrl());
-            System.out.println("HTTP Method: " + monitor.getHttpMethod());
-            System.out.println("----------------------------");
-        }
+        CheckResultRepository repository = new CheckResultRepository();
+        repository.saveCheckResult(testResult);
         
     }
 }
