@@ -4,32 +4,28 @@
  */
 package com.apimonitor;
 
-import com.apimonitor.database.CheckResultRepository;
-import com.apimonitor.models.CheckResult;
+import com.apimonitor.services.MonitorCheckService;
 
 /**
  *
  * @author bradi
  */
 
+/*
+ * Main application entry point.
+ * Starts the API monitoring process.
+ */
 public class ApiReliabilityMonitor {
     
     public static void main(String[] args){
         
+        // Print startup message
         System.out.println("Starting API Reliability Monitor...");
 
-        CheckResult testResult = new CheckResult(
-                0,
-                1,
-                null,
-                200,
-                150,
-                true,
-                null
-        );
+        // Create the monitoring service
+        MonitorCheckService service = new MonitorCheckService();
 
-        CheckResultRepository repository = new CheckResultRepository();
-        repository.saveCheckResult(testResult);
-        
+        // Run checks for all monitors in the database
+        service.runAllChecks();
     }
 }
