@@ -4,7 +4,7 @@
  */
 package com.apimonitor;
 
-import com.apimonitor.services.MonitorCheckService;
+import com.apimonitor.scheduler.MonitorScheduler;
 
 /**
  *
@@ -12,20 +12,20 @@ import com.apimonitor.services.MonitorCheckService;
  */
 
 /*
- * Main application entry point.
- * Starts the API monitoring process.
+ * Main entry point of the application.
+ * Starts the monitoring scheduler.
  */
 public class ApiReliabilityMonitor {
     
     public static void main(String[] args){
         
-        // Print startup message
+        // Startup message
         System.out.println("Starting API Reliability Monitor...");
 
-        // Create the monitoring service
-        MonitorCheckService service = new MonitorCheckService();
+        // Create scheduler
+        MonitorScheduler scheduler = new MonitorScheduler();
 
-        // Run checks for all monitors in the database
-        service.runAllChecks();
+        // Start automatic monitoring
+        scheduler.startScheduler();
     }
 }
